@@ -51,3 +51,15 @@ Config.MaximumAmmoValues = {
     ["pistol"] = 250,
     ["rifle"] = 250,
 }
+
+-- Temporary fix for: https://github.com/qbcore-framework/qb-inventory/issues/461
+Config.RestrictedItems = {
+    ['your_super_donation_item1'] = true,
+    ['your_super_donation_item2'] = true,
+    ['your_super_donation_item3'] = true,
+}
+Config.MinimalPriceForItem = {
+    ['some_important_item1'] = 100,
+    ['some_important_item2'] = 100,
+    ['some_important_item3'] = 100,
+}

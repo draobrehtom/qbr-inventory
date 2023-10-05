@@ -389,6 +389,26 @@ RegisterNetEvent('inventory:server:OpenInventory', function(name, id, other)
 					end
 				end
 			elseif name == "shop" then
+				-- Restrict some items from buying
+				local items = {}
+				for k,v in ipairs(other.items) do
+					if not Config.RestrictedItems[v.name] then
+						v.slot = #items + 1
+						table.insert(items, v)
+					end
+				end
+				other.items = items
+
+				-- Protect some item prices
+				local items = {}
+				for k,v in ipairs(other.items) do
+					if Config.MinimalPriceForItem[v.name] then
+						v.price = math.max(Config.MinimalPriceForItem[v.name], v.price)
+					end
+					table.insert(items, v)
+				end
+				other.items = items
+
 				secondInv.name = "itemshop-"..id
 				secondInv.label = other.label
 				secondInv.maxweight = 900000
